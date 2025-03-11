@@ -8,8 +8,7 @@ const mongoose = require('mongoose')
  *    type: object
  *    required: 
  *     - username
- *     - professionalTitle
- *     - professionalExperience
+ *     - profilePicture
  *     - bio
  *     - skills
  *     - passedOutYear
@@ -21,14 +20,6 @@ const mongoose = require('mongoose')
  *      minLength: 3
  *      maxLength: 20
  *      pattern: "^(?![-_])[a-zA-Z0-9-_]{3,20}(?<![-_])$"
- *     author: 
- *      type: string 
- *      description: The unique identifier of the user who owns the profile.
- *      example: 60d0fe4f5311236168a109ca
- *     professionalTitle:
- *      type: string
- *      description: The user's professional title or designation.
- *      example: 'Full Stack Developer'
  *     bio: 
  *      type: string 
  *      description: A short biography about the user.
@@ -39,14 +30,6 @@ const mongoose = require('mongoose')
  *      description: The URL of the user's profile picture.
  *      example: 'https://lh3.googleusercontent.com/a/profile-image'
  *      pattern: "^(http|https):\\/\\/[a-zA-Z0-9\\-_.]+(\\.[a-zA-Z]{2,})?(:[0-9]{1,5})?(\\/[a-zA-Z0-9\\-_.~!*'();:@&=+$,/?#[\\]%]*)?$"
- *     skills:
- *       type: array
- *       items:
- *         type: string
- *       description: A list of skills associated with the project, helping with categorization.
- *       example: ['HTML', 'Java', 'Figma']
- *       minItems: 1
- *       maxItems: 3
  *     portfolioLink:
  *      type: string
  *      description: A link to the user's portfolio website.

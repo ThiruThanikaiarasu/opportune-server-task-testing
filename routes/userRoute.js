@@ -55,13 +55,13 @@ router.post('/checkUsername', validateCheckUsernameInput(), checkUsernameAvailab
  *         schema:
  *           type: string
  *         description: The username of the user whose profile is being retrieved.
- *   responses:
- *     200:
- *       description: Successfully retrieved user profile
- *     404:
- *       description: User profile not found
- *     500:
- *       description: Internal server error
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved user profile
+ *       404:
+ *         description: User profile not found
+ *       500:
+ *         description: Internal server error
  */
 
 router.get('/profile/:username', getUserProfile)
@@ -80,14 +80,21 @@ router.get('/profile/:username', getUserProfile)
  *      schema:
  *       type: object
  *       properties:
- *         profilePicture:
+ *         username:
  *           type: string
- *           format: binary
- *           description: Upload a new profile picture.
+ *           description: A unique identifier for the user, following strict validation rules.
+ *           example: 'john_doe-99'
+ *           minLength: 3
+ *           maxLength: 20
+ *           pattern: "^(?![-_])[a-zA-Z0-9-_]{3,20}(?<![-_])$"
  *         bio:
  *           type: string
  *           description: A short biography about the user.
  *           example: "Passionate web developer with a focus on MERN stack projects."
+ *         profilePicture:
+ *           type: string
+ *           format: binary
+ *           description: Upload a new profile picture.
  *         portfolioLink:
  *           type: string
  *           description: A link to the user's portfolio website.
@@ -114,12 +121,6 @@ router.get('/profile/:username', getUserProfile)
  *                 type: string
  *                 description: The URL of the user's account on the specified domain.
  *                 example: "https://leetcode.com/username"
- *         passedOutYear:
- *           type: integer
- *           description: The year the user passed out from their educational institution.
- *           example: 2020
- *           minimum: 1960
- *           maximum: 2040
  *   responses:
  *    200:
  *     description: User profile updated successfully
@@ -130,7 +131,7 @@ router.get('/profile/:username', getUserProfile)
  *    500:
  *     description: Internal server error
  *    503: 
- *     description: 
+ *     description: Server busy try again later
  */
 
 router.patch('/profile', upload.fields([{name: 'profilePicture', maxCount: 1}, {name:'resumeFile', maxCount: 1}]), updateUserProfile)

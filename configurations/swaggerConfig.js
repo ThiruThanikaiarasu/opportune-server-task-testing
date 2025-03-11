@@ -14,7 +14,8 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: `${process.env.SERVER_URL}/api/v1`, 
+        // url: `${process.env.SERVER_URL}/api/v1`, 
+        url: 'https://opportune-task-testing.vercel.app/api/v1', 
       },
     ],
   },
